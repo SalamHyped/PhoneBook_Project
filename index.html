@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <link href="./style.css" rel="stylesheet">
+
+  <title>Document</title>
+</head>
+
+<body id="body" onload="show_user()">
+  <div  id="shadowing" onclick="close_popup(event)" >
+    <div id="infoUser">    
+      <p id="showUserName"></p>
+      <p id="showUserNp"></p>
+      <p id="showUserEmail"></p>
+      <p id="ShowUserAdd"></p>
+      <div>
+        <button onclick="close_popup('close')">Close</button>
+        <button>Save</button>
+      
+      </div>
+
+    </div>
+      
+
+     
+
+  <div id="editUser">
+          <div>
+            <div>
+              <div> <span>Name</span > <input type="text" placeholder="enter a name" value="" id="user_name"></div>
+              <div> <span>Number</span><input type="tel" placeholder="enter a phone number" value="" id="user_number"></div>
+            </div>
+          
+          
+            <div>
+              <div><span>Address</span><input type="text" placeholder="enter an address" value="" id="user_address"></div>
+              <div><span>Email</span> <input type="text" placeholder="enter an age" value="" id="user_email"></div>
+            </div>
+          
+            <div>
+              <div><span>Description</span> <input type="text" placeholder="URL" value="" id="user_description"></div>
+            </div>
+          
+            <div>
+              <button onclick="close_popup('close')" >Close</button>
+              <button id="save/add" onclick="add_edit(this)">Save</button>
+          
+            </div>
+          
+          </div>
+
+
+  </div>
+  <div id="deleteContact">
+    <p>Are You Sure to delete This Contact</p>
+    <div>
+      <button onclick="close_popup('close')">Close</button>
+      <button  id="deleteBttn" value="" onclick="deleteAll(this)">Delete</button>
+  
+    </div>
+
+  </div>
+
+
+  </div>
+
+
+  <div id="container">
+    <header>
+      <img src="./Images/contack_book.png" alt="book_icon">
+      <h1>phonebook</h1>
+
+      <div id="search-bar">
+        <div id="header_icons">
+          <button onclick="popup('editUser',event)";> <img id="add-contact" src="./Images/add-contact.png " alt="contact add"></button>
+          <button id="bin" onclick="popup('deleteContact',event);editValue('all')" ><img id="bin" src="./Images/dustbin.png" alt="trash"></button>
+
+        </div>
+        <br>
+
+        <a><img src="./Images/magnifying.png" alt="magnifying"></a>
+        <input id="search-engine" type="text" placeholder="Search...">
+      </div>
+
+    </header>
+
+    <main>
+
+      <ul id="users">
+
+      </ul>
+    </main>
+
+
+
+
+
+    <footer>
+      all right reserved &copy 2024;
+
+    </footer>
+  </div>
+  <script src="./js.js"></script>
+</body>
+
+</html>
