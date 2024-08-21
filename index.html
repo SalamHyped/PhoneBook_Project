@@ -8,8 +8,46 @@
   <title>Document</title>
 </head>
 
-<body id="body" onload="show_user()">
-  <div  id="shadowing" onclick="close_popup(event)" >
+<body  onload="show_user()">
+
+<header>
+      <img src="./Images/contack_book.png" alt="book_icon">
+      <h1>phonebook</h1>
+
+      
+
+    </header>
+ <main>
+
+  
+
+
+  
+
+  <div id="container">
+
+    <div id="search-bar">
+        <div id="header_icons">
+          <button onclick="popup('editUser',event)"> <img id="add-contact" src="./Images/add-contact.png " alt="contact add"></button>
+          <button id="bin" onclick="popup('deleteContact',event,'-1');editValue('all')" ><img id="bin1" src="./Images/dustbin.png" alt="trash"></button>
+
+        </div>
+        <br>
+
+        <a><img src="./Images/magnifying.png" alt="magnifying"></a>
+        <input id="search-engine" onkeyup="search()" type="text" placeholder="Search...">
+      </div>
+
+      <ul id="users">
+
+      </ul>
+
+    </div> 
+
+
+<div  id="shadowing" onclick="close_popup(event)" >
+
+
     <div id="infoUser">    
       <p id="showUserName"></p>
       <p id="showUserNp"></p>
@@ -66,42 +104,13 @@
 
   </div>
 
-
-  <div id="container">
-    <header>
-      <img src="./Images/contack_book.png" alt="book_icon">
-      <h1>phonebook</h1>
-
-      <div id="search-bar">
-        <div id="header_icons">
-          <button onclick="popup('editUser',event)"> <img id="add-contact" src="./Images/add-contact.png " alt="contact add"></button>
-          <button id="bin" onclick="popup('deleteContact',event);editValue('all')" ><img id="bin1" src="./Images/dustbin.png" alt="trash"></button>
-
-        </div>
-        <br>
-
-        <a><img src="./Images/magnifying.png" alt="magnifying"></a>
-        <input id="search-engine" type="text" placeholder="Search...">
-      </div>
-
-    </header>
-
-    <main>
-
-      <ul id="users">
-
-      </ul>
     </main>
 
 
-
-
-
-    <footer>
+   
+  <footer>
       <span>all right reserved &amp; copy 2024</span>
-
     </footer>
-  </div>
   <script src="./js.js"></script>
 </body>
 
