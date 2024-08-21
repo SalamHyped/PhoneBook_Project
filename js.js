@@ -24,7 +24,7 @@ const users = [
 ];
 
 
-function popup(popupID,event){
+function popup(popupID,event,x){
   const elem = document.getElementById('shadowing');
   elem.classList.add('shadow');
   const contain = document.getElementById(popupID);
@@ -39,8 +39,13 @@ function popup(popupID,event){
     contain.prepend(addtitle);
     document.getElementById('save/add').textContent="Add";
   }
-
-    
+  if(x!='-1'){
+  let index = x.value;
+  document.getElementById('user_name').value = users[index].username;
+  document.getElementById('user_number').value = users[index].phone;
+  document.getElementById('user_email').value = users[index].email;
+  document.getElementById('user_address').value = users[index].address;
+    }
 }
 
 function close_popup(event){
@@ -102,12 +107,12 @@ function show_user() {
 
           <div class="contact_info">
             <img src="./Images/user.png" alt="proflie_pic">
-            ${elem.username}
+           <p id="tousername">${elem.username}</p>
           </div>
 
           <div class="contact_actions">
-            <button onclick="popup('infoUser',event);showInfo(this)" value="${index}"><img src="./Images/name-card.png" alt="details"></button>
-            <button onclick="popup('editUser',event);editInfo(this)" value="${index}"> <img src="./Images/pen.png" alt="edit"></button>
+            <button onclick="popup('infoUser',event,'-1');showInfo(this)" value="${index}"><img src="./Images/name-card.png" alt="details"></button>
+            <button onclick="popup('editUser',event,this);changeval(${index})" value="${index}"> <img src="./Images/pen.png" alt="edit"></button>
             <button onclick="popup('deleteContact',event);editValue(${index})" value="${index}"><img src="./Images/contact.png" alt="delete"></button>
           </div>
 
@@ -118,12 +123,16 @@ function show_user() {
   document.getElementById('users').innerHTML=str;
 }
 
+function changeval(ind){
+  document.getElementById("save/add").value=ind;
+}
+
 function add_edit(fun){
 if(fun.textContent=='Add'){
   add_user();
 }
 else{
-  editInfo();
+  editInfo(fun);
   
 }
 }
@@ -151,16 +160,50 @@ function showInfo(x){
 }  
 
 function editInfo(x){
-  let index=x.value;
-document.getElementById('user_name').value=users[index].username;
-  document.getElementById('user_number').value = users[index].phone;
-  document.getElementById('user_email').value = users[index].email;
-  document.getElementById('user_address').value = users[index].address;
-
-
+    let index=x.value;
+    users[index].username =document.getElementById('user_name').value;
+    users[index].phone=document.getElementById('user_number').value  ;
+    users[index].email=document.getElementById('user_email').value  ;
+    users[index].address =document.getElementById('user_address').value ;
+  
+  close_popup('close');
+  show_user();
 }
 
 function editValue(index){
   document.getElementById('deleteBttn').value=index;
 
+}
+
+
+
+
+function search() {
+  // Get the search query
+  let input = document.getElementById('search-engine').value.toLowerCase();
+
+  let list = "";
+  users.forEach(function (elem, index) {
+    if (elem.username.indexOf(input)!=-1){
+      list += `  <li class="profile">
+
+          <div class="contact_info">
+            <img src="./Images/user.png" alt="proflie_pic">
+           <p id="tousername">${elem.username}</p>
+          </div>
+
+          <div class="contact_actions">
+            <button onclick="popup('infoUser',event);showInfo(this)" value="${index}"><img src="./Images/name-card.png" alt="details"></button>
+            <button onclick="popup('editUser',event);editInfo(this)" value="${index}"> <img src="./Images/pen.png" alt="edit"></button>
+            <button onclick="popup('deleteContact',event);editValue(${index})" value="${index}"><img src="./Images/contact.png" alt="delete"></button>
+          </div>
+
+        </li>`;
+
+    }
+  })
+  document.getElementById('users').innerHTML = list;
+  if (input.length ==0){
+    show_user();
+  }
 }
