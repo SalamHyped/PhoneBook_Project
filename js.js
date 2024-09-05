@@ -27,6 +27,7 @@ const users = [
 function popup(popupID,event,x){
   const elem = document.getElementById('shadowing');
   elem.classList.add('shadow');
+  
   const contain = document.getElementById(popupID);
    contain.classList.add('show');
   if (event.target === document.getElementById('add-contact'))
@@ -102,6 +103,9 @@ else {
 
 function show_user() {
   let str="";
+
+  users.sort((a, b) => a.username.localeCompare(b.username));
+
   users.forEach(function (elem,index) {
     str +=`  <li class="profile">
 
@@ -181,10 +185,11 @@ function editValue(index){
 function search() {
   // Get the search query
   let input = document.getElementById('search-engine').value.toLowerCase();
-
+  
   let list = "";
+
   users.forEach(function (elem, index) {
-    if (elem.username.indexOf(input)!=-1){
+    if (elem.username.startsWith(input)){
       list += `  <li class="profile">
 
           <div class="contact_info">
@@ -198,12 +203,19 @@ function search() {
             <button onclick="popup('deleteContact',event);editValue(${index})" value="${index}"><img src="./Images/contact.png" alt="delete"></button>
           </div>
 
-        </li>`;
+        </li> `;
 
     }
   })
+
+
+  
+
+  if(list.length==0)
+    document.getElementById('users').innerHTML= `<span class="nouser">No contacts available.</span>`
+  else
   document.getElementById('users').innerHTML = list;
-  if (input.length ==0){
-    show_user();
-  }
+
+
+  
 }
